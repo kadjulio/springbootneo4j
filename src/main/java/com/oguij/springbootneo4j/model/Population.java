@@ -13,11 +13,12 @@ public class Population {
     private  int Auspraegung_Code;
     private  String Auspraegung_Text;
     private int Anzahl;
-
-
-    @Relationship(type = "LOCATED_AT", direction = Relationship.OUTGOING)
-    private List<Population> populationList;
     private int Anzahl_q;
+
+
+
+    //@Relationship(type = "LOCATED_AT", direction = Relationship.OUTGOING)
+    private List<Population> populationList;
 
     public List<Population> getPopulationList() {
         return populationList;
