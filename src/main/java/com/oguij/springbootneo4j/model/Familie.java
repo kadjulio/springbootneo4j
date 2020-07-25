@@ -1,9 +1,10 @@
 package com.oguij.springbootneo4j.model;
 
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 @NodeEntity
-public class Familie {
+public class Familie extends Population {
 
     private String Gitter_ID_100m;
     private String Merkmal;
@@ -11,6 +12,12 @@ public class Familie {
     private  String Auspraegung_Text;
     private int Anzahl;
     private int Anzahl_q;
+
+
+    private Familie(String Gitter_ID_100m) {
+        super(Gitter_ID_100m);
+    }
+
 
     public String getGitter_ID_100m() {
         return Gitter_ID_100m;
