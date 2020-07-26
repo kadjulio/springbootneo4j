@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 @NodeEntity
 public class Population extends Position {
-
     private String Gitter_ID_100m;
     private String Merkmal;
     private  int Auspraegung_Code;
@@ -16,8 +15,18 @@ public class Population extends Position {
     private int Anzahl;
     private int Anzahl_q;
 
-    public Population(String Gitter_ID_100m) {
-        super(Gitter_ID_100m);
+    public Population(String Gitter_ID_100m, String Merkmal, String Auspraegung_Text, int Anzahl, int Auspraegung_Code, int Anzahl_q) {
+        super();
+        this.Gitter_ID_100m = Gitter_ID_100m;
+        this.Merkmal = Merkmal;
+        this.Auspraegung_Code = Auspraegung_Code;
+        this.Auspraegung_Text = Auspraegung_Text;
+        this.Anzahl = Anzahl;
+        this.Anzahl_q = Anzahl_q;
+    }
+
+    public Population() {
+        super();
     }
 
 
@@ -84,7 +93,6 @@ public class Population extends Position {
      */
 
     @Relationship(type = "LOCATED_AT", direction = Relationship.UNDIRECTED)
-
     public Set<Population> located_at;
 
     public void located_at(Population population) {
@@ -92,6 +100,18 @@ public class Population extends Position {
             located_at = new HashSet<>();
         }
         located_at.addAll(populationList);
+    }
+
+
+    @Relationship(type = "CONTAINS", direction = Relationship.UNDIRECTED)
+    public Set<Population>  contains;
+
+    public void contains(Population population) {
+        if (contains == null) {
+            contains = new HashSet<>();
+        }
+        contains.add(population);
+
     }
 
 
@@ -134,6 +154,30 @@ public class Population extends Position {
     }
 
 
+    @Override
+    public void setGitter_ID_100m(String gitter_ID_100m) {
+        Gitter_ID_100m = gitter_ID_100m;
+    }
+
+    public void setMerkmal(String merkmal) {
+        Merkmal = merkmal;
+    }
+
+    public void setAuspraegung_Code(int auspraegung_Code) {
+        Auspraegung_Code = auspraegung_Code;
+    }
+
+    public void setAuspraegung_Text(String auspraegung_Text) {
+        Auspraegung_Text = auspraegung_Text;
+    }
+
+    public void setAnzahl(int anzahl) {
+        Anzahl = anzahl;
+    }
+
+    public void setAnzahl_q(int anzahl_q) {
+        Anzahl_q = anzahl_q;
+    }
 
 
 }

@@ -1,7 +1,13 @@
 package com.oguij.springbootneo4j.model;
 
+
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
+
+import java.security.PublicKey;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @NodeEntity
 public class Familie extends Population {
@@ -13,10 +19,35 @@ public class Familie extends Population {
     private int Anzahl;
     private int Anzahl_q;
 
+   private Familie(String Gitter_ID_100m) {
+       super();
+       };
 
-    private Familie(String Gitter_ID_100m) {
-        super(Gitter_ID_100m);
+    public Familie(String Gitter_ID_100m,String Merkmal, String Auspraegung_Text, int Anzahl, int Auspraegung_Code, int Anzahl_q) {
+
+        this.Gitter_ID_100m = Gitter_ID_100m;
+        this.Merkmal = Merkmal;
+        this.Auspraegung_Code = Auspraegung_Code;
+        this.Auspraegung_Text = Auspraegung_Text;
+        this.Anzahl = Anzahl;
+        this.Anzahl_q = Anzahl_q;
+
     }
+
+    @Relationship (type = "CONTAINS", direction = Relationship.UNDIRECTED)
+    public Set<Familie> contains;
+
+    public void contains(Familie familie) {
+        if (contains == null) {
+            contains = new HashSet<>();
+        }
+        contains.add(familie);
+    }
+
+    public String toString() {
+        return this.Auspraegung_Text + "is contained in the Population";
+    }
+
 
 
     public String getGitter_ID_100m() {
