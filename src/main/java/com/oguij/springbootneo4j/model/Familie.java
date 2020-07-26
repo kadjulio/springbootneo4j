@@ -1,13 +1,11 @@
 package com.oguij.springbootneo4j.model;
 
 
-import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
-import java.security.PublicKey;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Set;
 
 @NodeEntity
 public class Familie extends Population {
@@ -19,9 +17,7 @@ public class Familie extends Population {
     private int Anzahl;
     private int Anzahl_q;
 
-   private Familie(String Gitter_ID_100m) {
-       super();
-       };
+
 
     public Familie(String Gitter_ID_100m,String Merkmal, String Auspraegung_Text, int Anzahl, int Auspraegung_Code, int Anzahl_q) {
 
