@@ -16,13 +16,16 @@ import java.util.List;
 
 
 @SpringBootApplication
-@EnableNeo4jRepositories
+@EnableNeo4jRepositories(repositoryFactoryBeanClass = PositionRepository.class)
 public class Springbootneo4jApplication {
 
 	private final static Logger log = LoggerFactory.getLogger(Springbootneo4jApplication.class);
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Springbootneo4jApplication.class, args);
+
+		Position position = null;
+		position.hashCode();
 	}
 
 	@Bean
@@ -66,7 +69,7 @@ public class Springbootneo4jApplication {
 			Familie familie9 = new Familie("100mN26926E43410", "INSGESAMT", "Einheiten insgeamt",3, 0, 0);
 
 
-			positionRepository.save(position0);
+			/*positionRepository.save(position0);
 			positionRepository.save(position1);
 			positionRepository.save(position2);
 			positionRepository.save(position3);
@@ -75,30 +78,29 @@ public class Springbootneo4jApplication {
 			positionRepository.save(position6);
 			positionRepository.save(position7);
 			positionRepository.save(position8);
-			positionRepository.save(position9);
+			positionRepository.save(position9);*/
 
 
-			position0 = positionRepository.findByPosition(position0.getGitter_ID_100m(), position0.getLatitude(), position0.getLongitude());
+			position0 = (Position) positionRepository.findbyPosition(position0.getGitter_ID_100m(), position0.getLatitude(), position0.getLongitude());
 			position0.located_at(population0);
-			position1 =positionRepository.findByPosition(position1.getGitter_ID_100m(), position1.getLatitude(), position1.getLongitude());
+			position1 = (Position) positionRepository.findbyPosition(position1.getGitter_ID_100m(), position1.getLatitude(), position1.getLongitude());
 			position1.located_at(population1);
-			position2 = positionRepository.findByPosition(position2.getGitter_ID_100m(), position2.getLatitude(), position2.getLongitude());
+			position2 = (Position) positionRepository.findbyPosition(position2.getGitter_ID_100m(), position2.getLatitude(), position2.getLongitude());
 			position2.located_at(population2);
-			position3 =positionRepository.findByPosition(position3.getGitter_ID_100m(), position3.getLatitude(), position3.getLongitude());
+			position3 = (Position)positionRepository.findbyPosition(position3.getGitter_ID_100m(), position3.getLatitude(), position3.getLongitude());
 			position3.located_at(population3);
-			position4 = positionRepository.findByPosition(position4.getGitter_ID_100m(), position4.getLatitude(), position4.getLongitude());
+			position4 = (Position) positionRepository.findbyPosition(position4.getGitter_ID_100m(), position4.getLatitude(), position4.getLongitude());
 			position4.located_at(population4);
-			position5 =positionRepository.findByPosition(position5.getGitter_ID_100m(), position5.getLatitude(), position5.getLongitude());
+			position5 = (Position) positionRepository.findbyPosition(position5.getGitter_ID_100m(), position5.getLatitude(), position5.getLongitude());
 			position5.located_at(population5);
-			position6 = positionRepository.findByPosition(position6.getGitter_ID_100m(), position6.getLatitude(), position6.getLongitude());
+			position6 = (Position) positionRepository.findbyPosition(position6.getGitter_ID_100m(), position6.getLatitude(), position6.getLongitude());
 			position6.located_at(population6);
-			position7 =positionRepository.findByPosition(position7.getGitter_ID_100m(), position7.getLatitude(), position7.getLongitude());
+			position7 = (Position) positionRepository.findbyPosition(position7.getGitter_ID_100m(), position7.getLatitude(), position7.getLongitude());
 			position7.located_at(population7);
-			position8 = positionRepository.findByPosition(position8.getGitter_ID_100m(), position8.getLatitude(), position8.getLongitude());
+			position8 = (Position) positionRepository.findbyPosition(position8.getGitter_ID_100m(), position8.getLatitude(), position8.getLongitude());
 			position8.located_at(population8);
-			position9 =positionRepository.findByPosition(position9.getGitter_ID_100m(), position9.getLatitude(), position9.getLongitude());
+			position9 = (Position) positionRepository.findbyPosition(position9.getGitter_ID_100m(), position9.getLatitude(), position9.getLongitude());
 			position9.located_at(population9);
-
 
 
 
@@ -109,19 +111,13 @@ public class Springbootneo4jApplication {
 					population6,population7,population8,population9);
 			List<Familie> familielocation = Arrays.asList(familie0,familie1,familie2,familie3,familie4,familie5,
 					familie6,familie7,familie9);
+
+
 			log.info("Lookup each Group by position");
 			location.stream().forEach(position -> log.info("\t" + position.toString()));
 			poeplelocation.stream().forEach(population -> log.info("\t" + population.toString()));
 			familielocation.stream().forEach(familie -> log.info("\t" + familie.toString()));
 
-
-
-
-
-
 		};
-
 	}
-
-
 }
