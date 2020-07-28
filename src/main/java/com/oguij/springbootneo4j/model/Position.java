@@ -1,8 +1,11 @@
 package com.oguij.springbootneo4j.model;
 
 
+import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.Relationship;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,8 +14,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Position {
-    @Id private String longitude;
-    @Id private String latitude;
+
+    @Id @GeneratedValue private Long id;
+    private String longitude;
+    private String latitude;
     private String Gitter_ID_100m;
 
 
@@ -31,8 +36,12 @@ public class Position {
     @Relationship(type = "LOCATED_AT", direction = Relationship.UNDIRECTED)
     public Set<Position> located_at;
 
-    public Position() {
+    @Autowired
+    protected Position() {
         // Empty constructor required as of Neo4j API 2.0.5
+    }
+
+    public Position(String gitter_id_100m) {
     }
 
 
@@ -51,15 +60,15 @@ public class Position {
     }
 
     public String getLongitude() {
-        return longitude;
+        return this.longitude;
     }
 
     public String getLatitude() {
-        return latitude;
+        return this.latitude;
     }
 
     public String getGitter_ID_100m() {
-        return Gitter_ID_100m;
+        return this.Gitter_ID_100m;
     }
 
     public void setLongitude(String longitude) {
@@ -73,4 +82,6 @@ public class Position {
     public void setGitter_ID_100m(String gitter_ID_100m) {
         Gitter_ID_100m = gitter_ID_100m;
     }
+
+
 }

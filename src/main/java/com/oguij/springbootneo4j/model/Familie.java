@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @NodeEntity
-public class Familie extends Population {
+public class Familie {
 
     private String Gitter_ID_100m;
     private String Merkmal;

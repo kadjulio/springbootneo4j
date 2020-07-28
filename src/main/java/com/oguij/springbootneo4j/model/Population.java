@@ -3,11 +3,16 @@ package com.oguij.springbootneo4j.model;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @NodeEntity
 public class Population extends Position {
+
+
+
+    private Position position;
     private String Gitter_ID_100m;
     private String Merkmal;
     private  int Auspraegung_Code;
@@ -16,8 +21,8 @@ public class Population extends Position {
     private int Anzahl_q;
 
     public Population(String Gitter_ID_100m, String Merkmal, String Auspraegung_Text, int Anzahl, int Auspraegung_Code, int Anzahl_q) {
-        super();
-        this.Gitter_ID_100m = Gitter_ID_100m;
+        super(Gitter_ID_100m);
+        //this.Gitter_ID_100m = Gitter_ID_100m;
         this.Merkmal = Merkmal;
         this.Auspraegung_Code = Auspraegung_Code;
         this.Auspraegung_Text = Auspraegung_Text;
@@ -26,7 +31,15 @@ public class Population extends Position {
     }
 
     public Population() {
-        super();
+
+    }
+
+    public Position getPosition() {
+       return position;
+    }
+
+    public void setPosition(final Position position) {
+        this.position = position;
     }
 
 
@@ -99,18 +112,19 @@ public class Population extends Position {
         if (located_at == null) {
             located_at = new HashSet<>();
         }
-        located_at.addAll(populationList);
+        located_at.add(population);
     }
 
 
     @Relationship(type = "CONTAINS", direction = Relationship.UNDIRECTED)
     public Set<Population>  contains;
 
-    public void contains(Population population) {
+    public void contains(Population familie, Population haushalte) {
         if (contains == null) {
             contains = new HashSet<>();
         }
-        contains.add(population);
+        contains.add(familie);
+        contains.add(haushalte);
 
     }
 
@@ -154,7 +168,7 @@ public class Population extends Position {
     }
 
 
-    @Override
+
     public void setGitter_ID_100m(String gitter_ID_100m) {
         Gitter_ID_100m = gitter_ID_100m;
     }

@@ -6,19 +6,19 @@ import org.neo4j.ogm.annotation.Relationship;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Haushalte  extends Population{
+public class Haushalte {
 
-    @Override
+
     public String getGitter_ID_100m() {
         return Gitter_ID_100m;
     }
 
-    @Override
+
     public void setGitter_ID_100m(String gitter_ID_100m) {
         Gitter_ID_100m = gitter_ID_100m;
     }
 
-    @Override
+
     public String getMerkmal() {
         return Merkmal;
     }
@@ -27,7 +27,7 @@ public class Haushalte  extends Population{
         Merkmal = merkmal;
     }
 
-    @Override
+
     public int getAuspraegung_Code() {
         return Auspraegung_Code;
     }
@@ -36,7 +36,7 @@ public class Haushalte  extends Population{
         Auspraegung_Code = auspraegung_Code;
     }
 
-    @Override
+
     public String getAuspraegung_Text() {
         return Auspraegung_Text;
     }
@@ -45,7 +45,7 @@ public class Haushalte  extends Population{
         Auspraegung_Text = auspraegung_Text;
     }
 
-    @Override
+
     public int getAnzahl() {
         return Anzahl;
     }
@@ -54,7 +54,7 @@ public class Haushalte  extends Population{
         Anzahl = anzahl;
     }
 
-    @Override
+
     public int getAnzahl_q() {
         return Anzahl_q;
     }
@@ -63,7 +63,7 @@ public class Haushalte  extends Population{
         Anzahl_q = anzahl_q;
     }
 
-    @Id private String Gitter_ID_100m;
+    private String Gitter_ID_100m;
     private String Merkmal;
     private int Auspraegung_Code;
     private String Auspraegung_Text;
